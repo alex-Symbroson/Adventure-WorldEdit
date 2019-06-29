@@ -51,7 +51,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane fx:id="splitPane" dividerPositions="0.20601336302895323, 0.8251670378619154" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane fx:id="splitPane" dividerPositions="0.2, 0.825" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
             <TreeView id="fileTreeView" fx:id="fileTreeView" prefHeight="548.0" prefWidth="254.0" />
         <ScrollPane>
