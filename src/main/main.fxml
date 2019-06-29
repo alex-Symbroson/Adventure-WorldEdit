@@ -20,10 +20,9 @@
             <MenuItem mnemonicParsing="false" onAction="#addFolder" text="Add Project Folder" />
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
             <MenuItem mnemonicParsing="false" text="Save" />
             <MenuItem mnemonicParsing="false" text="Save As..." />
-            <MenuItem mnemonicParsing="false" text="Revert" />
+            <MenuItem mnemonicParsing="false" text="Close" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences..." />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -53,7 +52,7 @@
     </MenuBar>
     <SplitPane fx:id="splitPane" dividerPositions="0.2, 0.825" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-            <TreeView id="fileTreeView" fx:id="fileTreeView" prefHeight="548.0" prefWidth="254.0" />
+        <TreeView id="fileTreeView" fx:id="fileTreeView" prefHeight="548.0" prefWidth="254.0" />
         <ScrollPane>
                <content>
                   <Canvas height="547.0" width="547.0" />
@@ -64,7 +63,7 @@
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
       <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+        <Label maxHeight="1.8E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
           <textFill>
             <Color blue="0.625" green="0.625" red="0.625" />
           </textFill>

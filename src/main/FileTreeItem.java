@@ -7,55 +7,57 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-public class FileTreeItem extends TreeItem<TreeFile>
+public class FileTreeItem extends TreeItem<File>
 {
 
     private boolean isFirstChild = true;
     private boolean isLeaf;
 
-    public FileTreeItem(TreeFile f)
+    public FileTreeItem(File f)
     {
-        super(f);
-        isLeaf = f.isFile();
+	super(f);
+	isLeaf = f.isFile();
     }
 
     @Override
-    public ObservableList<TreeItem<TreeFile>> getChildren()
+    public ObservableList<TreeItem<File>> getChildren()
     {
-        // create children list on first load
-        if (isFirstChild) {
-            isFirstChild = false;
-            super.getChildren().setAll(buildChildren(this));
-        }
-        return super.getChildren();
+	// create children list on first load
+	if (isFirstChild)
+	{
+	    isFirstChild = false;
+	    super.getChildren().setAll(buildChildren(this));
+	}
+	return super.getChildren();
     }
 
     @Override
     public boolean isLeaf()
     {
-        return isLeaf;
+	return isLeaf;
     }
 
     // Recursively create children
-    private ObservableList<TreeItem<TreeFile>> buildChildren(TreeItem<TreeFile> TreeItem)
+    private ObservableList<TreeItem<File>> buildChildren(TreeItem<File> TreeItem)
     {
-        TreeFile f = TreeItem.getValue();
+	File f = TreeItem.getValue();
 
-        if (f != null && f.isDirectory())
-        {
-            // list unhidden files
-            File[] files = f.listFiles((file, name) -> !name.startsWith(".") );
+	if (f != null && f.isDirectory())
+	{
+	    // list unhidden files
+	    File[] files = f.listFiles((file, name) -> !name.startsWith("."));
 
-            // return sorted list of children
-            if (files != null)
-            {
-                Arrays.sort(files);
-                ObservableList<TreeItem<TreeFile>> children = FXCollections.observableArrayList();
-                for (File childFile : files) children.add(new FileTreeItem(new TreeFile(childFile)));
-                return children;
-            }
-        }
+	    // return sorted list of children
+	    if (files != null)
+	    {
+		Arrays.sort(files);
+		ObservableList<TreeItem<File>> children = FXCollections.observableArrayList();
+		for (File childFile : files)
+		    children.add(new FileTreeItem(childFile));
+		return children;
+	    }
+	}
 
-        return FXCollections.emptyObservableList();
+	return FXCollections.emptyObservableList();
     }
 }
