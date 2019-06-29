@@ -1,5 +1,6 @@
 package main;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,5 +67,11 @@ public class Controller
 
         for(String item : rootItems)
             children.add(new FileTreeItem(new TreeFile(item)));
+    }
+    
+    @FXML
+    private void quit(ActionEvent event)
+    {
+    	Platform.exit();
     }
 }
