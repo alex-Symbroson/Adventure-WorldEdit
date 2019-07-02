@@ -10,73 +10,73 @@
 <?import javafx.scene.text.*?>
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open..." />
-            <MenuItem mnemonicParsing="false" onAction="#addFolder" text="Add Project Folder" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As..." />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences..." />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About Gilberts Advent&#x00fc;res WorldEdit" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <SplitPane fx:id="splitPane" dividerPositions="0.2, 0.825" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <items>
-        <TreeView id="fileTreeView" fx:id="fileTreeView" prefHeight="548.0" prefWidth="254.0" />
-        <ScrollPane>
-               <content>
-                  <Canvas height="547.0" width="547.0" />
-               </content>
-        </ScrollPane>
-        <AnchorPane prefHeight="548.0" prefWidth="327.0" />
-      </items>
-    </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-      <children>
-        <Label maxHeight="1.8E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
-          <textFill>
-            <Color blue="0.625" green="0.625" red="0.625" />
-          </textFill>
-        </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label maxWidth="-1.0" text="Right status" HBox.hgrow="NEVER" />
-      </children>
-      <padding>
-        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-      </padding>
-    </HBox>
-  </children>
   <stylesheets>
     <URL value="@main.css" />
   </stylesheets>
+   <children>
+     <MenuBar VBox.vgrow="NEVER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+             <items>
+               <MenuItem mnemonicParsing="false" text="New" />
+               <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open..." />
+               <MenuItem mnemonicParsing="false" onAction="#addFolder" text="Add Project Folder" />
+               <Menu mnemonicParsing="false" text="Open Recent" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" text="Save" />
+               <MenuItem mnemonicParsing="false" text="Save As..." />
+               <MenuItem mnemonicParsing="false" text="Close" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" text="Preferences..." />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
+             </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+             <items>
+               <MenuItem mnemonicParsing="false" text="Undo" />
+               <MenuItem mnemonicParsing="false" text="Redo" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" text="Cut" />
+               <MenuItem mnemonicParsing="false" text="Copy" />
+               <MenuItem mnemonicParsing="false" text="Paste" />
+               <MenuItem mnemonicParsing="false" text="Delete" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" text="Select All" />
+               <MenuItem mnemonicParsing="false" text="Unselect All" />
+             </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+             <items>
+               <MenuItem mnemonicParsing="false" text="About Gilberts Adventüres WorldEdit" />
+             </items>
+          </Menu>
+        </menus>
+     </MenuBar>
+     <SplitPane dividerPositions="0.2, 0.823" focusTraversable="true" VBox.vgrow="ALWAYS">
+        <items>
+          <TreeView id="fileTreeView" fx:id="fileTreeView" prefHeight="548.0" prefWidth="254.0" />
+            <Pane fx:id="game" prefHeight="200.0" prefWidth="200.0" />
+          <AnchorPane prefHeight="548.0" prefWidth="327.0">
+               <children>
+                  <Button layoutX="47.0" layoutY="22.0" mnemonicParsing="false" onAction="#startPreview" text="Preview" />
+               </children>
+            </AnchorPane>
+        </items>
+     </SplitPane>
+     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+       <padding>
+         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+       </padding>
+        <children>
+          <Label maxHeight="1.8E308" text="Left status" HBox.hgrow="ALWAYS">
+            <textFill>
+              <Color blue="0.625" green="0.625" red="0.625" />
+            </textFill>
+          </Label>
+          <Pane HBox.hgrow="ALWAYS" />
+          <Label text="Right status" HBox.hgrow="NEVER" />
+        </children>
+     </HBox>
+   </children>
 </VBox>

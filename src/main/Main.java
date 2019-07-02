@@ -13,17 +13,18 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-	stage = primaryStage;
+        stage = primaryStage;
 
-	Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-	setUserAgentStylesheet(STYLESHEET_MODENA);
-	primaryStage.setTitle("Adventure WorldEdit");
-	primaryStage.setScene(new Scene(root));
-	primaryStage.show();
+        // load GUI from xml
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        primaryStage.setTitle("Adventure WorldEdit");
+        setUserAgentStylesheet(STYLESHEET_MODENA);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     public static void main(String[] args)
     {
-	launch(args);
+        launch(args);
     }
 }
