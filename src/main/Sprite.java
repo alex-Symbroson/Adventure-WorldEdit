@@ -24,18 +24,22 @@ class Sprite extends ImageView
 
             // load sprite image
             img = new Image(new FileInputStream(sprite.getString("src")));
-            if (img.errorProperty().get()) img.getException().printStackTrace();
+            if (img.errorProperty().get())
+                img.getException().printStackTrace();
             setImage(img);
 
             // apply extra properties
-            if (sprite.has("x")) setX(sprite.getInt("x"));
-            if (sprite.has("y")) setY(sprite.getInt("y"));
+            if (sprite.has("x"))
+                setX(sprite.getInt("x"));
+            if (sprite.has("y"))
+                setY(sprite.getInt("y"));
 
-            if (sprite.has("w")) setFitWidth(sprite.getInt("w"));
-            if (sprite.has("h")) setFitHeight(sprite.getInt("h"));
+            if (sprite.has("w"))
+                setFitWidth(sprite.getInt("w"));
+            if (sprite.has("h"))
+                setFitHeight(sprite.getInt("h"));
 
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
         }
