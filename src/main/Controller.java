@@ -12,6 +12,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
 import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
 
 public class Controller
 {
@@ -21,6 +22,8 @@ public class Controller
     private Pane game;
     @FXML
     private TreeView<File> fileTreeView;
+    @FXML
+    private Menu prefsMenu;
 
     // initialize tree view with cell factory
     public void initialize()
@@ -39,6 +42,25 @@ public class Controller
                     setText(item.getName());
             }
         });
+
+        String[] keys = {};
+        try
+        {
+            keys = Main.prefs.keys();
+        }
+        catch (BackingStoreException e)
+        {
+            e.printStackTrace();
+        }
+        for (String key : keys)
+        {
+            // TODO: add text for text preferences
+            CheckBox box = new CheckBox(key.replace('_', ' '));
+            box.setAllowIndeterminate(false);
+            box.setSelected(Main.prefs.getBoolean(key, false));
+            box.setOnAction(e -> Main.prefs.putBoolean(key, box.isSelected()));
+            prefsMenu.getItems().add(new CustomMenuItem(box, false));
+        }
     }
 
     @FXML
@@ -100,19 +122,24 @@ public class Controller
     @FXML
     private void quit(ActionEvent event)
     {
-        Alert dlg = new Alert(Alert.AlertType.CONFIRMATION);
-        dlg.setTitle("Exit confirmation");
-        dlg.setHeaderText("Exit WorldEdit?");
+        boolean quit = true;
 
-        dlg.setOnCloseRequest(e ->
+        if (Main.prefs.getBoolean("Show_Exit_Dialog", true))
         {
-            if (dlg.getResult() == ButtonType.OK)
-            {
-                logger.info("closing");
-                Platform.exit();
-            }
-        });
-        dlg.show();
+            Alert dlg = new Alert(Alert.AlertType.CONFIRMATION);
+            dlg.setTitle("Exit confirmation");
+            dlg.setHeaderText("Exit WorldEdit?");
+
+            dlg.showAndWait();
+            if (dlg.getResult() == ButtonType.CANCEL)
+                quit = false;
+        }
+
+        if (quit)
+        {
+            logger.info("closing");
+            Platform.exit();
+        }
     }
 
     @FXML

@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.Permissions;
 
 public class Loader
 {
@@ -53,7 +52,7 @@ public class Loader
     public static ScriptEvaluator loadScript(String script, Sprite obj)
     {
         ScriptEvaluator se = new ScriptEvaluator();
-        se.setParameters(new String[] { "self", "event" }, new Class[] { Sprite.class, Event.class });
+        se.setParameters(new String[]{"self", "event"}, new Class[]{Sprite.class, Event.class});
 
         try
         {
@@ -75,7 +74,7 @@ public class Loader
         {
             try
             {
-                se.evaluate(new Object[]{ obj, e });
+                se.evaluate(new Object[]{obj, e});
             }
             catch (InvocationTargetException ex)
             {

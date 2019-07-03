@@ -1,7 +1,6 @@
 package main;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 
 public class Renderer
@@ -9,7 +8,6 @@ public class Renderer
     public boolean running = true;
 
     private Pane game;
-    private GraphicsContext ctx;
 
     Sprite bunny;
 
@@ -28,10 +26,11 @@ public class Renderer
         init();
 
         // render loop
-        new AnimationTimer()
-        {
+        new AnimationTimer() {
             @Override
-            public void handle(long now) {}
-        };//.start();
+            public void handle(long now)
+            {
+            }
+        };
     }
 }

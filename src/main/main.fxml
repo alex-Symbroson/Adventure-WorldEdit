@@ -27,7 +27,7 @@
                <MenuItem mnemonicParsing="false" text="Save As..." />
                <MenuItem mnemonicParsing="false" text="Close" />
                <SeparatorMenuItem mnemonicParsing="false" />
-               <MenuItem mnemonicParsing="false" text="Preferences..." />
+               <Menu fx:id="prefsMenu" mnemonicParsing="false" text="Preferences..." />
                <SeparatorMenuItem mnemonicParsing="false" />
                <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
              </items>

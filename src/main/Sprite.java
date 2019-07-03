@@ -5,9 +5,6 @@ import javafx.scene.image.ImageView;
 import org.codehaus.janino.ScriptEvaluator;
 import org.json.JSONObject;
 
-import java.security.Permissions;
-import java.util.PropertyPermission;
-
 class Sprite extends ImageView
 {
     public Image img;

@@ -1,31 +1,31 @@
 package main;
 
+import java.io.File;
+import java.util.Arrays;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-import java.io.File;
-import java.util.Arrays;
-
 public class FileTreeItem extends TreeItem<File>
 {
-    private boolean firstLoad = true;
+
+    private boolean isFirstChild = true;
     private boolean isLeaf;
 
-    // Create new item
     public FileTreeItem(File f)
     {
         super(f);
         isLeaf = f.isFile();
     }
 
-    // return cached children (load on first run)
     @Override
     public ObservableList<TreeItem<File>> getChildren()
     {
-        if (firstLoad)
+        // create children list on first load
+        if (isFirstChild)
         {
-            firstLoad = false;
+            isFirstChild = false;
             super.getChildren().setAll(buildChildren(this));
         }
         return super.getChildren();
@@ -44,7 +44,7 @@ public class FileTreeItem extends TreeItem<File>
 
         if (f != null && f.isDirectory())
         {
-            // list unhidden files (by filtering files not starting with ".")
+            // list visible files (by filtering files not starting with ".")
             File[] files = f.listFiles((file, name) -> !name.startsWith("."));
 
             // return sorted list of children
