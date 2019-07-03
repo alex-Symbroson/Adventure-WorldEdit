@@ -24,3 +24,6 @@ hs_err_pid*
 
 # Output directory
 out
+/bin/
+/.classpath
+/.project

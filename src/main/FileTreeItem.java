@@ -44,7 +44,7 @@ public class FileTreeItem extends TreeItem<File>
 
 	if (f != null && f.isDirectory())
 	{
-	    // list unhidden files
+	    // list visible files
 	    File[] files = f.listFiles((file, name) -> !name.startsWith("."));
 
 	    // return sorted list of children
