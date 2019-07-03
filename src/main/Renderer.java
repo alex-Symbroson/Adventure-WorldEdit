@@ -17,8 +17,8 @@ public class Renderer
     private void init()
     {
         // load sprite demo
-        bunny = new Sprite("res/bunny.json");
-        game.getChildren().add(bunny);
+        Level level01 = new Level("res/level/level01.json", game);
+        game.getChildren().add(level01);
     }
 
     // start render loop

@@ -2,42 +2,38 @@ package main;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.codehaus.janino.ScriptEvaluator;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.security.Permissions;
+import java.util.PropertyPermission;
 
 class Sprite extends ImageView
 {
     public Image img;
 
+    ScriptEvaluator onClick;
+
+    Sprite(JSONObject sprite)
+    {
+        // load sprite image
+        img = Loader.loadImage(sprite.getString("src"));
+        setImage(img);
+
+        // apply extra properties
+        if (sprite.has("x")) setX(sprite.getInt("x"));
+        if (sprite.has("y")) setY(sprite.getInt("y"));
+
+        if (sprite.has("w")) setFitWidth(sprite.getInt("w"));
+        if (sprite.has("h")) setFitHeight(sprite.getInt("h"));
+
+        if (sprite.has("visible")) setVisible(sprite.getBoolean("visible"));
+        if (sprite.has("onClick")) setOnMouseClicked(Loader.loadEvent(sprite.getString("onClick"), this));
+    }
+
     // Create Sprite from json file
     Sprite(String path)
     {
-        try
-        {
-            // read and load json
-            byte[] data = Files.readAllBytes(Paths.get(path));
-            JSONObject sprite = new JSONObject(new String(data));
-
-            // load sprite image
-            img = new Image(new FileInputStream(sprite.getString("src")));
-            if (img.errorProperty().get()) img.getException().printStackTrace();
-            setImage(img);
-
-            // apply extra properties
-            if (sprite.has("x")) setX(sprite.getInt("x"));
-            if (sprite.has("y")) setY(sprite.getInt("y"));
-
-            if (sprite.has("w")) setFitWidth(sprite.getInt("w"));
-            if (sprite.has("h")) setFitHeight(sprite.getInt("h"));
-
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        this(Loader.loadJson(path));
     }
 }

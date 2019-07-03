@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="openjfx" level="application" />
     <orderEntry type="library" name="json" level="application" />
+    <orderEntry type="library" name="commons-compiler-3.0.9" level="project" />
   </component>
 </module>
