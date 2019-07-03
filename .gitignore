@@ -27,3 +27,7 @@ out
 /bin/
 /.classpath
 /.project
+
+# Hidden directories
+.idea
+ideas
