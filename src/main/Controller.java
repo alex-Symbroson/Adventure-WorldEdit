@@ -1,6 +1,9 @@
 package main;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.prefs.BackingStoreException;
 
@@ -106,20 +109,32 @@ public class Controller
     }
 
     // add folder to treeView
-    private void addTreeFolder(File... rootItems)
+    private void addTreeFolder(File... folders)
     {
         TreeItem<File> root = fileTreeView.getRoot();
         if (root == null)
         {
             root = new TreeItem<>();
-            fileTreeView.setRoot(root);
             fileTreeView.setShowRoot(false);
+            fileTreeView.setRoot(root);
         }
 
         // add items to treeView
         ObservableList<TreeItem<File>> children = root.getChildren();
-        for (File item : rootItems)
-            children.add(new FileTreeItem(item));
+        List<File> folder_list = new ArrayList<>(Arrays.asList(folders));
+
+        // update every folder already contained, add the others
+        children.filtered(item -> folder_list.contains(item.getValue())).forEach(item -> {
+            ((FileTreeItem) item).update();
+            folder_list.remove(item.getValue());
+        });
+        folder_list.forEach(file -> children.add(new FileTreeItem(file)));
+    }
+    
+    // update project folders
+    @FXML
+    private void updateFolders(ActionEvent event){
+        fileTreeView.getRoot().getChildren().forEach(item -> ((FileTreeItem)item).update());
     }
 
     // confirm and quit app

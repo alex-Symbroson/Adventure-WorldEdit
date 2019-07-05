@@ -55,7 +55,15 @@
      </MenuBar>
      <SplitPane dividerPositions="0.2, 0.868" focusTraversable="true" VBox.vgrow="ALWAYS">
         <items>
-          <TreeView id="fileTreeView" fx:id="fileTreeView" />
+          <TreeView id="fileTreeView" fx:id="fileTreeView">
+             <contextMenu>
+               <ContextMenu>
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#updateFolders" text="Update" accelerator="F5" />
+                  </items>
+               </ContextMenu>
+             </contextMenu>
+          </TreeView>
           <Pane fx:id="game" prefHeight="450.0" prefWidth="800.0" />
           <AnchorPane>
              <children>

@@ -1,9 +1,11 @@
 package main;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
@@ -31,6 +33,11 @@ public class FileTreeItem extends TreeItem<File>
         return super.getChildren();
     }
 
+    public void update()
+    {
+        super.getChildren().setAll(buildChildren(this));
+    }
+
     @Override
     public boolean isLeaf()
     {
@@ -38,7 +45,7 @@ public class FileTreeItem extends TreeItem<File>
     }
 
     // Recursively create children
-    private ObservableList<TreeItem<File>> buildChildren(TreeItem<File> TreeItem)
+    private List<TreeItem<File>> buildChildren(TreeItem<File> TreeItem)
     {
         File f = TreeItem.getValue();
 
@@ -51,7 +58,7 @@ public class FileTreeItem extends TreeItem<File>
             if (files != null)
             {
                 Arrays.sort(files);
-                ObservableList<TreeItem<File>> children = FXCollections.observableArrayList();
+                List<TreeItem<File>> children = new ArrayList<>();
 
                 for (File childFile : files)
                     children.add(new FileTreeItem(childFile));
@@ -60,6 +67,6 @@ public class FileTreeItem extends TreeItem<File>
             }
         }
 
-        return FXCollections.emptyObservableList();
+        return Collections.emptyList();
     }
 }
