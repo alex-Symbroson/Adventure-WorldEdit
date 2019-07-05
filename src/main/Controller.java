@@ -7,7 +7,7 @@ import java.util.prefs.BackingStoreException;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -28,6 +28,8 @@ public class Controller
     // initialize tree view with cell factory
     public void initialize()
     {
+        Main.stage.setOnCloseRequest(e -> quit(e));
+        
         fileTreeView.setCellFactory(ftv -> new TreeCell<File>() {
             // define custom item text
             @Override
@@ -131,7 +133,7 @@ public class Controller
 
     // confirm and quit app
     @FXML
-    private void quit(ActionEvent event)
+    private void quit(Event event)
     {
         boolean quit = true;
 
