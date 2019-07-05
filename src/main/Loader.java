@@ -1,18 +1,14 @@
 package main;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 import org.codehaus.commons.compiler.CompileException;
 import org.codehaus.janino.ScriptEvaluator;
 import org.json.JSONObject;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.scene.image.Image;
 
 public class Loader
@@ -24,8 +20,7 @@ public class Loader
         try
         {
             img = new Image(new FileInputStream(url));
-            if (img.errorProperty().get())
-                img.getException().printStackTrace();
+            if (img.errorProperty().get()) img.getException().printStackTrace();
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();
@@ -70,7 +65,8 @@ public class Loader
     {
         ScriptEvaluator se = loadScript(script, obj);
 
-        return e -> {
+        return e ->
+        {
             try
             {
                 se.evaluate(new Object[] { obj });

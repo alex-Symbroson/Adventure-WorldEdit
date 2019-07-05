@@ -1,9 +1,7 @@
 package main;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.prefs.BackingStoreException;
 
@@ -11,17 +9,9 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.CustomMenuItem;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
+import javafx.stage.*;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Controller
@@ -124,17 +114,19 @@ public class Controller
         List<File> folder_list = new ArrayList<>(Arrays.asList(folders));
 
         // update every folder already contained, add the others
-        children.filtered(item -> folder_list.contains(item.getValue())).forEach(item -> {
+        children.filtered(item -> folder_list.contains(item.getValue())).forEach(item ->
+        {
             ((FileTreeItem) item).update();
             folder_list.remove(item.getValue());
         });
         folder_list.forEach(file -> children.add(new FileTreeItem(file)));
     }
-    
+
     // update project folders
     @FXML
-    private void updateFolders(ActionEvent event){
-        fileTreeView.getRoot().getChildren().forEach(item -> ((FileTreeItem)item).update());
+    private void updateFolders(ActionEvent event)
+    {
+        fileTreeView.getRoot().getChildren().forEach(item -> ((FileTreeItem) item).update());
     }
 
     // confirm and quit app
@@ -150,8 +142,7 @@ public class Controller
             dlg.setHeaderText("Exit WorldEdit?");
 
             dlg.showAndWait();
-            if (dlg.getResult() == ButtonType.CANCEL)
-                quit = false;
+            if (dlg.getResult() == ButtonType.CANCEL) quit = false;
         }
 
         if (quit)

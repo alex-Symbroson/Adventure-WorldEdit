@@ -1,10 +1,7 @@
 package main;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
