@@ -1,14 +1,14 @@
 package main;
 
+import java.util.function.BiConsumer;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.function.BiConsumer;
-import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
 
 public class Main extends Application
 {
@@ -22,8 +22,7 @@ public class Main extends Application
         prefs = Preferences.userRoot().node("ga_worledit");
 
         // set value if absent
-        BiConsumer<String, String> put_def = (k, v) ->
-        {
+        BiConsumer<String, String> put_def = (k, v) -> {
             if (prefs.get(k, v).equals(v))
                 prefs.put(k, v);
         };

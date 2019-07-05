@@ -1,18 +1,25 @@
 package main;
 
+import java.io.File;
+import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.TreeCell;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-
-import java.io.File;
-import java.util.logging.Logger;
-import java.util.prefs.BackingStoreException;
 
 public class Controller
 {
@@ -28,8 +35,7 @@ public class Controller
     // initialize tree view with cell factory
     public void initialize()
     {
-        fileTreeView.setCellFactory(ftv -> new TreeCell<File>()
-        {
+        fileTreeView.setCellFactory(ftv -> new TreeCell<File>() {
             // define custom item text
             @Override
             protected void updateItem(File item, boolean empty)
@@ -47,8 +53,7 @@ public class Controller
         try
         {
             keys = Main.prefs.keys();
-        }
-        catch (BackingStoreException e)
+        } catch (BackingStoreException e)
         {
             e.printStackTrace();
         }
@@ -96,8 +101,7 @@ public class Controller
         {
             logger.info("add folder " + selectedDirectory);
             addTreeFolder(selectedDirectory);
-        }
-        else
+        } else
             logger.info("add folder aborted.");
     }
 

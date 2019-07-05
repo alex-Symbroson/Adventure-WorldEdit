@@ -1,18 +1,19 @@
 package main;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import org.codehaus.commons.compiler.CompileException;
-import org.codehaus.janino.ScriptEvaluator;
-import org.json.JSONObject;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import org.codehaus.commons.compiler.CompileException;
+import org.codehaus.janino.ScriptEvaluator;
+import org.json.JSONObject;
+
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 
 public class Loader
 {
@@ -23,9 +24,9 @@ public class Loader
         try
         {
             img = new Image(new FileInputStream(url));
-            if (img.errorProperty().get()) img.getException().printStackTrace();
-        }
-        catch (FileNotFoundException e)
+            if (img.errorProperty().get())
+                img.getException().printStackTrace();
+        } catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
@@ -40,8 +41,7 @@ public class Loader
         try
         {
             data = Files.readAllBytes(Paths.get(path));
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -52,13 +52,13 @@ public class Loader
     public static ScriptEvaluator loadScript(String script, Sprite obj)
     {
         ScriptEvaluator se = new ScriptEvaluator();
-        se.setParameters(new String[]{"self", "event"}, new Class[]{Sprite.class, Event.class});
+        se.setNoPermissions();
+        se.setParameters(new String[] { "self" }, new Class[] { Sprite.class });
 
         try
         {
             se.cook(script);
-        }
-        catch (CompileException e)
+        } catch (CompileException e)
         {
             e.printStackTrace();
         }
@@ -70,13 +70,11 @@ public class Loader
     {
         ScriptEvaluator se = loadScript(script, obj);
 
-        return e ->
-        {
+        return e -> {
             try
             {
-                se.evaluate(new Object[]{obj, e});
-            }
-            catch (InvocationTargetException ex)
+                se.evaluate(new Object[] { obj });
+            } catch (InvocationTargetException ex)
             {
                 ex.printStackTrace();
             }

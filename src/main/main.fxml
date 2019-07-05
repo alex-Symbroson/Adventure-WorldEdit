@@ -10,37 +10,37 @@
 <?import javafx.scene.text.*?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
-  <stylesheets>
-    <URL value="@main.css" />
-  </stylesheets>
+   <stylesheets>
+     <URL value="@main.css" />
+   </stylesheets>
    <children>
      <MenuBar VBox.vgrow="NEVER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
              <items>
-               <MenuItem mnemonicParsing="false" text="New" />
-               <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open..." />
+               <MenuItem mnemonicParsing="false" text="New" accelerator="Shortcut+N" />
+               <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open..." accelerator="Shortcut+O" />
                <MenuItem mnemonicParsing="false" onAction="#addFolder" text="Add Project Folder" />
                <Menu mnemonicParsing="false" text="Open Recent" />
                <SeparatorMenuItem mnemonicParsing="false" />
-               <MenuItem mnemonicParsing="false" text="Save" />
+               <MenuItem mnemonicParsing="false" text="Save" accelerator="Shortcut+S" />
                <MenuItem mnemonicParsing="false" text="Save As..." />
                <MenuItem mnemonicParsing="false" text="Close" />
                <SeparatorMenuItem mnemonicParsing="false" />
                <Menu fx:id="prefsMenu" mnemonicParsing="false" text="Preferences..." />
                <SeparatorMenuItem mnemonicParsing="false" />
-               <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
+               <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" accelerator="Shortcut+Q" />
              </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
              <items>
-               <MenuItem mnemonicParsing="false" text="Undo" />
-               <MenuItem mnemonicParsing="false" text="Redo" />
+               <MenuItem mnemonicParsing="false" text="Undo" accelerator="Shortcut+Z" />
+               <MenuItem mnemonicParsing="false" text="Redo" accelerator="Shortcut+Y" />
                <SeparatorMenuItem mnemonicParsing="false" />
-               <MenuItem mnemonicParsing="false" text="Cut" />
-               <MenuItem mnemonicParsing="false" text="Copy" />
-               <MenuItem mnemonicParsing="false" text="Paste" />
-               <MenuItem mnemonicParsing="false" text="Delete" />
+               <MenuItem mnemonicParsing="false" text="Cut" accelerator="Shortcut+X" />
+               <MenuItem mnemonicParsing="false" text="Copy" accelerator="Shortcut+C" />
+               <MenuItem mnemonicParsing="false" text="Paste" accelerator="Shortcut+V" />
+               <MenuItem mnemonicParsing="false" text="Delete" accelerator="Delete" />
                <SeparatorMenuItem mnemonicParsing="false" />
                <MenuItem mnemonicParsing="false" text="Select All" />
                <MenuItem mnemonicParsing="false" text="Unselect All" />
@@ -53,21 +53,21 @@
           </Menu>
         </menus>
      </MenuBar>
-     <SplitPane dividerPositions="0.20394736842105263, 0.868421052631579" focusTraversable="true" VBox.vgrow="ALWAYS">
+     <SplitPane dividerPositions="0.2, 0.868" focusTraversable="true" VBox.vgrow="ALWAYS">
         <items>
           <TreeView id="fileTreeView" fx:id="fileTreeView" />
-            <Pane fx:id="game" prefHeight="450.0" prefWidth="800.0" />
+          <Pane fx:id="game" prefHeight="450.0" prefWidth="800.0" />
           <AnchorPane>
-               <children>
-                  <Button layoutX="37.0" layoutY="38.0" mnemonicParsing="false" onAction="#startPreview" prefHeight="25.0" prefWidth="79.0" text="Preview" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="36.0" />
-               </children>
-            </AnchorPane>
+             <children>
+               <Button layoutX="37.0" layoutY="38.0" mnemonicParsing="false" onAction="#startPreview" prefHeight="25.0" prefWidth="79.0" text="Preview" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="36.0" />
+             </children>
+          </AnchorPane>
         </items>
      </SplitPane>
      <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-       <padding>
-         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-       </padding>
+        <padding>
+          <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+        </padding>
         <children>
           <Label text="Left status" HBox.hgrow="ALWAYS">
             <textFill>
