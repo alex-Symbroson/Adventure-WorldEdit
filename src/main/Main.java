@@ -3,14 +3,14 @@ package main;
 import java.util.function.BiConsumer;
 import java.util.prefs.*;
 
-import javafx.application.Application;
+import javafx.application.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.Stage;
 
 public class Main extends Application
 {
-    // note: using public static variables is discouraged
+    // note: using public static (non-final) variables is discouraged
     public static Stage stage;
     public static Preferences prefs;
 
@@ -41,7 +41,7 @@ public class Main extends Application
         primaryStage.show();
     }
 
-    public static void main(String[] args) throws BackingStoreException
+    public static void main(String[] args)
     {
         launch(args);
     }

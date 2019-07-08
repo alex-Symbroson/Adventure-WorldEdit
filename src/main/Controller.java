@@ -10,7 +10,11 @@ import javafx.collections.ObservableList;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.layout.*;
+import javafx.scene.paint.*;
+import javafx.scene.text.Font;
 import javafx.stage.*;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -29,7 +33,7 @@ public class Controller
     public void initialize()
     {
         Main.stage.setOnCloseRequest(e -> quit(e));
-        
+
         fileTreeView.setCellFactory(ftv -> new TreeCell<File>() {
             // define custom item text
             @Override
@@ -139,9 +143,10 @@ public class Controller
 
         if (Main.prefs.getBoolean("Show_Exit_Dialog", true))
         {
-            Alert dlg = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert dlg = new Alert(AlertType.CONFIRMATION);
             dlg.setTitle("Exit confirmation");
             dlg.setHeaderText("Exit WorldEdit?");
+            dlg.getDialogPane().setStyle("-fx-base: #000;");
 
             dlg.showAndWait();
             if (dlg.getResult() == ButtonType.CANCEL) quit = false;
@@ -158,5 +163,73 @@ public class Controller
     private void startPreview(ActionEvent event)
     {
         new Renderer().start(game);
+    }
+
+    private Label mkLabel(String text, Paint color, Font... font)
+    {
+        Label label = new Label(text);
+        label.setTextFill(color);
+        if (font.length > 0) label.setFont(font[0]);
+        return label;
+    }
+
+    @FXML
+    private void showAbout(ActionEvent event)
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "", new ButtonType("lolz"),
+                new ButtonType("Not funny.", ButtonData.NO));
+        alert.setTitle("About");
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.getDialogPane().setStyle("-fx-base: #000;");
+
+        GridPane labelpane = new GridPane();
+        labelpane.setHgap(10);
+        labelpane.setVgap(10);
+        labelpane.add(mkLabel("I want to make my own level.", Color.WHITE), 0, 0);
+        labelpane.add(mkLabel("Well, that will be hard.", Color.AQUA), 0, 1);
+        labelpane.add(mkLabel("That's what she said!", Color.SPRINGGREEN), 0, 2);
+        alert.getDialogPane().setContent(labelpane);
+        alert.getDialogPane().setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+
+        alert.showAndWait();
+
+        labelpane.getChildren().clear();
+        alert.getButtonTypes().clear();
+        if (alert.getResult().getButtonData() == ButtonData.NO)
+        {
+            labelpane.add(mkLabel("You are so mean!\nAlex, why are they mean to me?", Color.SPRINGGREEN), 0, 0);
+            labelpane.add(mkLabel("Your jokes suck, Richard.", Color.AQUA), 0, 1);
+            labelpane.add(mkLabel("...", Color.SPRINGGREEN), 0, 2);
+            labelpane.add(mkLabel("Your mom sucks.", Color.SPRINGGREEN), 0, 3);
+            ButtonType btype = new ButtonType("No she doesn't!");
+            alert.getButtonTypes().add(btype);
+            Button btn = (Button) alert.getDialogPane().lookupButton(btype);
+            btn.setTextFill(Color.AQUA);
+            alert.showAndWait();
+
+            labelpane.getChildren().clear();
+            Label lbl = mkLabel("Yes she does!", Color.SPRINGGREEN);
+            labelpane.add(lbl, 0, 0);
+            alert.showAndWait();
+            alert.showAndWait();
+
+            btn.setText("Yes she does!");
+            alert.showAndWait();
+
+            lbl.setText("No she doesn't!");
+            btn.setText("Hah!");
+            alert.showAndWait();
+
+            lbl.setText("Dammit.\nYou win this time!");
+            alert.getButtonTypes().clear();
+            alert.getButtonTypes().add(new ButtonType("Please stop this."));
+            alert.showAndWait();
+        } else
+        {
+            labelpane.add(mkLabel("EXACTLY", Color.SPRINGGREEN, Font.font(20)), 0, 0);
+            alert.getButtonTypes().add(new ButtonType("OK"));
+            alert.showAndWait();
+        }
     }
 }
