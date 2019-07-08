@@ -201,7 +201,7 @@ public class Controller
             labelpane.add(mkLabel("You are so mean!\nAlex, why are they mean to me?", Color.SPRINGGREEN), 0, 0);
             labelpane.add(mkLabel("Your jokes suck, Richard.", Color.AQUA), 0, 1);
             labelpane.add(mkLabel("...", Color.SPRINGGREEN), 0, 2);
-            labelpane.add(mkLabel("Your mom sucks.", Color.SPRINGGREEN), 0, 3);
+            labelpane.add(mkLabel("Your mom sux.", Color.SPRINGGREEN), 0, 3);
             ButtonType btype = new ButtonType("No she doesn't!");
             alert.getButtonTypes().add(btype);
             Button btn = (Button) alert.getDialogPane().lookupButton(btype);
