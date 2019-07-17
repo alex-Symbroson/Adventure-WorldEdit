@@ -143,7 +143,10 @@ public class Controller
 
         if (Main.prefs.getBoolean("Show_Exit_Dialog", true))
         {
-            Alert dlg = new Alert(AlertType.CONFIRMATION);
+            // two reasons for using ButtonData.NO:
+            // has ButtonData.defaultButton = false, inheriting style data from its DialogPane
+            // is always to left of ButtonData.CANCEL_CLOSE, but without a big gap (ButtonBar BUTTON_ORDER_ constants)
+            Alert dlg = new Alert(AlertType.CONFIRMATION, null, new ButtonType("OK", ButtonData.NO), ButtonType.CANCEL);
             dlg.setTitle("Exit confirmation");
             dlg.setHeaderText("Exit WorldEdit?");
             dlg.getDialogPane().setStyle("-fx-base: #000;");
@@ -176,8 +179,8 @@ public class Controller
     @FXML
     private void showAbout(ActionEvent event)
     {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "", new ButtonType("lolz"),
-                new ButtonType("Not funny.", ButtonData.NO));
+        Alert alert = new Alert(AlertType.CONFIRMATION, "", new ButtonType("lolzers"),
+                new ButtonType("Not funny, dude.", ButtonData.NO));
         alert.setTitle("About");
         alert.setHeaderText(null);
         alert.setGraphic(null);
@@ -186,9 +189,10 @@ public class Controller
         GridPane labelpane = new GridPane();
         labelpane.setHgap(10);
         labelpane.setVgap(10);
-        labelpane.add(mkLabel("I want to make my own level.", Color.WHITE), 0, 0);
-        labelpane.add(mkLabel("Well, that will be hard.", Color.AQUA), 0, 1);
-        labelpane.add(mkLabel("That's what she said!", Color.SPRINGGREEN), 0, 2);
+        labelpane.add(mkLabel("\"I want to make my own level.\" you say.", Color.WHITE), 0, 0);
+        labelpane.add(mkLabel("So, you want to make your own level.\nThat used to be hard, but it isn't anymore!",
+                Color.AQUA), 0, 1);
+        labelpane.add(mkLabel("Ha! That's what she said!", Color.SPRINGGREEN), 0, 2);
         alert.getDialogPane().setContent(labelpane);
         alert.getDialogPane().setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
