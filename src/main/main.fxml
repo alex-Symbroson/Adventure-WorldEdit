@@ -64,7 +64,7 @@
                </ContextMenu>
              </contextMenu>
           </TreeView>
-          <Pane fx:id="game" prefHeight="450.0" prefWidth="800.0" />
+          <Pane fx:id="game" prefHeight="432.0" prefWidth="768.0" />
           <AnchorPane>
              <children>
                <Button layoutX="37.0" layoutY="38.0" mnemonicParsing="false" onAction="#startPreview" prefHeight="25.0" prefWidth="79.0" text="Preview" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="36.0" />
